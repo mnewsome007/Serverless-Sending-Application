@@ -7,39 +7,50 @@ This project will guide you in hosting a static website on AWS. You will learn t
 
 <h2>AWS Cloud Map</h2>
 <p align="center">
-<img src="https://i.imgur.com/MleqjqT.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/rYKC5x2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 
 
 <h2>Services Used</h2>
 
-- <b>Route 53</b> 
-- <b>CloudFront</b>
-- <b>AWS Certificate Manager</b>
-- <b>Amazon S3</b>
+- <b>Amazon S3</b> 
+- <b>API Gateway</b>
+- <b>AWS Lamnda</b>
+- <b>AWS Step Functions</b>
+- <b>Amazon SNS</b>
+- <b>Amazon SES</b>
 
 <h2>Environments Used </h2>
 
 - <b>AWS Management Console</b>
+- <b>Software Development Kit (SDK)</b>
+- <b>Python</b>
 
-<h2>Static Website Hosting walk-through:</h2>
+<h2>Serverless Sending Application walk-through:</h2>
 
-- <b>Purchase a domain from AWS through Route 53 in the AWS Management Console</b>
-- <b>Purchasing your domain through AWS automatically creates a hosted zone (container for your records)</b>
-- <b>Within Amazon S3, create your main S3 bucket which will be named after your main URL domain; you will also choose your AWS region during this process</b>
-- <b>You will now UPLOAD your own files to the S3 bucket </b>
-- <b>Activate Static website hosting under the Static website hosting section in the Properties tab</b>
-- <b>Verify the website by using the temporary URL of the S3 bucket</b>
-- <b>Within Amazon S3, create a redirect S3 bucket, following the same process used to create the main S3 bucket. You will choose Redirect for the Hosting type and set Protocol to "None". The "Host name" should be filled with the target bucket website address(main S3 bucket domain); this redirects all traffic it recieves to the main S3 bucket previously created</b>
-- <b>Now you will link the domain to the main S3 bucket using Route 53 by creating "A" DNS records inside your hosted zone </b>
-- <b>You will follow the recent step to create the second DNS record for the redirect S3 bucket</b>
-- <b>Create a SSL certificate for your website through AWS Certificate Manager, after the creation of the SSL certificate, validate the certificate</b>
-- <b>CloudFront will no be introduced in order to deploy your website in HTTPS and allow faster access to the website for users</b>
-- <b>Create the main CLoudFront distribution using the main S3 bucket URL</b>
-- <b>Create the redirect CLoudFront distribution using the Origin domain for the URL of the S3 bucketL</b>
-- <b>In your redirect S3 bucket, you can now change the protocol to "https"</b>
-- <b>Finalize the A records in Route 53 so the web addresses route traffic created by CloudFront distributions</b>
+- <b>Within Identity and Access Management (IAM) create a Lambda role with AWS Service as the selected trusted entity</b>
+- <b>Create Lambda Function from scratch using Python in the Code source menu; AWS utiilizes "boto3" SDK toolkit to interact with Python</b>
+- <b>Import "boto3" library inside your code and define the services to be interacted with (SES); define the lambda function to be used and in this case "send_email" will be used</b>
+- <b>Add the variables "Source" , "Destination" , "Message" to your code </b>
+- <b>Deploy and test the code</b>
+- <b>Within Identity and Access Management (IAM) create a Lambda role by using an exisitng role</b>
+- <b>Now utilize Code source and import "boto3" library inside your code and define the services to be interacted with (SNS); define the lambda function to be used and in this case "publish" will be used</b>
+- <b>Add the variables "PhoneNumber" , "Message" to your code</b>
+- <b>Deploy and test the code</b>
+- <b>Within Step Functions create a state machine by writing your workflow in code</b>
+- <b>Now add the ARN's of the Lambda functions "email.py and sms.py" to the corresponding states</b>
+- <b>Name the state machine to finalize the creation</b>
+- <b>Launch the execution</b>
+- <b>Create another Lambda function from scratch for the API Handler</b>
+- <b>Now utilize Code source and import "boto3" library inside your code and define the services to be interacted with (SFN); define the lambda function to be used and in this case "start_execution" will be used</b>
+- <b>Add the variables "stateMachineArn" to your code</b>
+- <b>Copy the ARN of the previously created state machine to your code</b>
+- <b>Deploy and test the code</b>
+- <b>Create a REST API using API Gateway</b>
+- <b>Deploy the API</b>
+- <b>Create/code a static website and upload it to S3</b>
+- <b>Test the website and try sending an email and a SMS</b>
 
 
 
