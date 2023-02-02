@@ -2,7 +2,7 @@
 
 
 <h2>Description</h2>
-This project will guide you in hosting a static website on AWS. You will learn the steps of importing a domain name on AWS, creating a hosted zone and managing its DNS records, creating S3 buckets to host website pages, configuring Route 53 to link the domain name to the website, creating an SSL certificate for the website using AWS Certificate Manager (ACM), and creating CloudFront distributions to secure the website in HTTPS. By completing this project, you will have a comprehensive understanding of how to host a static website on AWS and the various tools and technologies involved in the process.
+This project is designed to help you learn how to send an email or a SMS from a website using AWS services. You will be able to execute email and SMS sendings from a website using S3, API Gateway, and Lambda. You will also learn how to manage email and SMS sendings using Step Functions. The project will guide you through the process of creating and sending an email with AWS using SES and Lambda, as well as creating and sending a SMS with AWS using SNS and Lambda. By completing this project, you will have a comprehensive understanding of how to send an email or a SMS from a website using AWS services, and the various tools and technologies involved in the process.
 <br />
 
 <h2>AWS Cloud Map</h2>
